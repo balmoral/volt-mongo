@@ -60,9 +60,8 @@ module Volt
         end
 
         to_mongo_id!(values)
-        # TODO: Seems mongo is dumb and doesn't let you upsert with custom id's
         begin
-          db[collection].insert_one(values)
+          db[collection].update_one({'_id' => values['_id']}, values, {upsert: true})
         rescue => error
           # Really mongo client?
           msg = error.message
