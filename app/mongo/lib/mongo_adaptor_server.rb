@@ -61,7 +61,7 @@ module Volt
 
         to_mongo_id!(values)
         begin
-          db[collection].update_one({'_id' => values['_id']}, values, {upsert: true})
+
         rescue => error
           # Really mongo client?
           msg = error.message
